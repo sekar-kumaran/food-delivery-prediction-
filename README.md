@@ -6,6 +6,7 @@
 
 A complete end-to-end Machine Learning project to predict food delivery times based on real-world Indian delivery dataset. It includes data exploration, model training, and a stunning, interactive web application built with Streamlit.
 
+### 🌐 Live Demo: [https://food-delivery-model.streamlit.app/](https://food-delivery-model.streamlit.app/)
 ## 🌟 Features
 - **Stunning UI**: The application features a custom CSS glassmorphism design, animated gradient backgrounds, and fully responsive elements.
 - **Dataset Overview**: Real-time data preview directly integrated into the app.
