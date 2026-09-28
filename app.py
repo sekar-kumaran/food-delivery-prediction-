@@ -137,7 +137,7 @@ st.markdown(page_bg_css, unsafe_allow_html=True)
 # Cache model loading for speed
 @st.cache_resource
 def load_model():
-    model_dict = joblib.load('best_delivery_time_model.joblib')
+    model_dict = joblib.load('best_delivery_time_model_compressed.joblib')
     return model_dict['model'], model_dict['columns']
 
 @st.cache_data
