@@ -1,175 +1,58 @@
-# Food Delivery Time Prediction Project
+# 🛵 Food Delivery Time Prediction
 
-This repository contains a comprehensive workflow for predicting food delivery times using a real-world dataset of orders from Indian cities. The project covers the full pipeline of data cleaning, exploratory data analysis (EDA), feature engineering, and supervised machine learning modeling.
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
----
+A complete end-to-end Machine Learning project to predict food delivery times based on real-world Indian delivery dataset. It includes data exploration, model training, and a stunning, interactive web application built with Streamlit.
 
-## Table of Contents
+## 🌟 Features
+- **Stunning UI**: The application features a custom CSS glassmorphism design, animated gradient backgrounds, and fully responsive elements.
+- **Dataset Overview**: Real-time data preview directly integrated into the app.
+- **Model Predictions**: Uses a trained **Random Forest Regressor** to predict the estimated delivery time based on parameters like distance, rider age, weather, traffic, and more.
+- **Model Evaluation**: Transparent metrics showing why Random Forest was chosen over Linear Regression and Decision Trees (achieved an R² Score of 80.5%).
 
-- [Project Overview](#project-overview)
-- [Dataset Description](#dataset-description)
-- [Data Processing Workflow](#data-processing-workflow)
-- [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
-- [Feature Engineering](#feature-engineering)
-- [Machine Learning Models](#machine-learning-models)
-- [Results & Insights](#results--insights)
-- [How to Run](#how-to-run)
-- [Requirements](#requirements)
-- [References](#references)
+## 🛠️ Tech Stack
+- **Data Science**: Python, Pandas, NumPy
+- **Machine Learning**: Scikit-Learn (Random Forest, Decision Trees, Linear Regression)
+- **Web App**: Streamlit
+- **Model Serialization**: Joblib
 
----
+## 🚀 How to Run Locally
 
-## Project Overview
-
-The main goal is to predict the time required to deliver food orders, given various influencing factors. Having accurate delivery time predictions can help restaurants, delivery companies, and customers optimize planning and expectations.
-
-**Key objectives:**
-- Analyze the data to reveal main drivers of delivery time.
-- Build regression models to predict delivery duration.
-- Evaluate and compare model performance.
-
----
-
-## Dataset Description
-
-**Source:**  
-- `India-Food-Delivery-Time-Prediction.json` (included in the repo).
-
-**Features include:**
-- Delivery agent ID, Age, and Ratings
-- Restaurant & delivery locations (latitude/longitude)
-- Order date, time ordered, and picked up
-- Weather & road traffic at time of order
-- Vehicle condition, type of order, festival flag, city
-- Target variable: *Time_taken(min)*
-
-**Dimensions:**
-- ~42,000 rows (orders)
-- 20 columns
-
-**Sample columns:**
-| Feature                      | Example                                  |
-|------------------------------|------------------------------------------|
-| Delivery_person_Age          | 34.0                                     |
-| Delivery_person_Ratings      | 4.6                                      |
-| Road_traffic_density         | High, Jam, Low, Medium                   |
-| Weatherconditions            | Sunny, Cloudy, Stormy, Sandstorms        |
-| Type_of_vehicle              | motorcycle, scooter                      |
-| Distance (engineered)        | 3.0 km (from Haversine formula)          |
-| Time_taken(min)              | 24, 30, 33, ...                          |
-
----
-
-## Data Processing Workflow
-
-**1. Data Loading**
-- Data is loaded from the JSON file using pandas.
-
-**2. Cleaning**
-- Fix inconsistent missing values (`NaN`, `nan` as strings) to proper nulls.
-- Strip spaces in text columns.
-- Remove redundant text in columns (e.g., remove ‘(min)’ from delivery time).
-- Fill missing numeric values with medians.
-- Fill missing categorical values with the mode (most common value).
-- Standardize categorical variable values.
-
-**3. Feature Engineering**
-- Calculate the distance between restaurant and delivery location using Haversine formula.
-- Convert relevant features to correct data types.
-
----
-
-## Exploratory Data Analysis (EDA)
-
-- **Distribution Analysis:**  
-  Histogram plot of delivery times for all orders.
-- **Traffic Impact:**  
-  Countplot of orders across different road traffic conditions.
-- **Weather Impact:**  
-  Boxplot showing effect of weather on delivery time.
-- **Distance Effect:**  
-  Scatterplot of trip distance vs delivery time.
-
-**Example Insight Plots:**
-- Delivery times are higher on days with stormy weather and heavy/jam traffic.
-- Longer distances generally require more time, but variability can depend on traffic and weather.
-
----
-
-## Feature Engineering
-
-- **Distance Calculation:**  
-  The distance between restaurant and delivery address is computed for each order using the latitude/longitude values and the Haversine formula.
-
----
-
-## Machine Learning Models
-
-**Regression models evaluated:**
-- Linear Regression
-- Decision Tree Regressor
-- Random Forest Regressor
-
-**Modeling Pipeline:**
-1. Data split into training and testing sets.
-2. Features and target variable selected.
-3. Multiple regression models fitted and evaluated.
-4. Performance metrics used for comparison:  
-   - Mean Absolute Error (MAE)  
-   - Root Mean Squared Error (RMSE)  
-   - R² Score
-
-**Example model usage:**
-```python
-from sklearn.ensemble import RandomForestRegressor
-model = RandomForestRegressor()
-model.fit(X_train, y_train)
-preds = model.predict(X_test)
-```
-
----
-
-## Results & Insights
-
-- **Best Model:** Random Forest yields the most accurate predictions.
-- **Importance Factors:**  
-  - Traffic density, weather, and route distance have the most significant impact on time.
-- **Typical MAE:**  
-  - (Example) MAE for Random Forest: ~3.2 minutes (change based on your actual result).
-- **Feature Insights:**  
-  - Late orders cluster around poor traffic and high festival periods.
-- **Visual Proof:**
-  
-  ![Histogram](#) *(Add .png, if desired, from notebook output)*
-
----
-
-## How to Run
-
-1. Clone/download this repository.
-2. Ensure the dataset (`India-Food-Delivery-Time-Prediction.json`) is present in the repo root.
-3. Open and step through the notebook:  
-   [`Food_Delivery_Time_Prediction_Project.ipynb`](https://github.com/sekar-kumaran461/food-delivery-prediction-/blob/main/Food_Delivery_Time_Prediction_Project.ipynb)
-4. Install required libraries with:
+1. **Clone the repository**
    ```bash
-   pip install pandas numpy matplotlib seaborn scikit-learn joblib
+   git clone https://github.com/sekar-kumaran/food-delivery-prediction-.git
+   cd food-delivery-prediction-
    ```
 
----
+2. **Install the dependencies**
+   Ensure you have Python installed. Then run:
+   ```bash
+   pip install streamlit pandas numpy scikit-learn joblib
+   ```
 
-## Requirements
+3. **Train the Model (If applicable)**
+   *Note: Pre-trained `.joblib` models are excluded from this repo due to size limits. You must run the Jupyter notebook to generate them!*
+   - Open `Food_Delivery_Time_Prediction_Project.ipynb`.
+   - Run all cells to process the data and generate `best_delivery_time_model.joblib`.
 
-- Python 3.x
-- pandas, numpy, matplotlib, seaborn
-- scikit-learn, joblib
+4. **Run the Streamlit App**
+   ```bash
+   streamlit run app.py
+   ```
+   The app will automatically open in your browser at `http://localhost:8502`.
 
----
+## 📊 Dataset Details
+The model analyzes the following features:
+- **Delivery Person Info:** Age and average rating.
+- **Distance:** Calculated using Restaurant and Delivery geographic coordinates.
+- **Environment:** Current weather (Fog, Stormy, Sunny, etc.) and Road Traffic Density.
+- **Vehicle Type:** Scooter, Motorcycle, Bicycle, etc.
+- **External Factors:** City type, Multiple Deliveries, and Festival occurrences.
 
-## References
-
-- Data and notebook authored by [sekar-kumaran461](https://github.com/sekar-kumaran461)
-- See notebook for further credits and cited sources.
-
----
-
-*For any questions or contributions, please open an issue or submit a pull request.*
+## 📈 Performance
+- **Algorithm:** Random Forest Regressor
+- **R² Score:** 0.805
+- **MAE:** 3.22 mins
+- **RMSE:** 4.10 mins
